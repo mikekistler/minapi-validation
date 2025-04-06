@@ -7,6 +7,13 @@
     <RootNamespace>minapi_validation</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Capture XML doc comments for inclusion in the generated OpenAPI document -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Disable missing XML comment warnings -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-preview.3.25172.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.0-preview.3.*">

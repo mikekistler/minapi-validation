@@ -4,16 +4,33 @@ using eShop.Catalog.API.Exceptions;
 
 namespace eShop.Catalog.API.Model;
 
+/// <summary>
+/// Represents a catalog item.
+/// </summary>
 public class CatalogItem
 {
+    /// <summary>
+    /// Unique identifier for the catalog item.
+    /// </summary>
     public int Id { get; set; }
 
+    /// <summary>
+    /// Name of the catalog item.
+    /// </summary>
     [Required]
+    [MaxLength(100)]
+    [MinLength(3, ErrorMessage = "{0} must be at least 3 characters long.")]
     public string? Name { get; set; }
 
+    /// <summary>
+    /// Description of the catalog item.
+    /// </summary>
     [Required]
+    [StringLength(500, MinimumLength = 10)]
     public string? Description { get; set; }
 
+    [Required]
+    [Range(0.01, 10000)]
     public decimal Price { get; set; }
 
     public string? PictureFileName { get; set; }
@@ -28,19 +45,16 @@ public class CatalogItem
     [Required]
     public CatalogBrand? CatalogBrand { get; set; }
 
-    // Quantity in stock
+    /// <summary>
+    /// Quantity in stock
+    /// </summary>
     public int AvailableStock { get; set; }
 
     // Available stock at which we should reorder
     public int RestockThreshold { get; set; }
 
-
     // Maximum number of units that can be in-stock at any time (due to physicial/logistical constraints in warehouses)
     public int MaxStockThreshold { get; set; }
-
-    /// <summary>Optional embedding for the catalog item's description.</summary>
-    [JsonIgnore]
-    // public Vector Embedding { get; set; }
 
     /// <summary>
     /// True if item is on reorder

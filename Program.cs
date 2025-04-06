@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using eShop.Catalog.API;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,11 @@ builder.Services.AddOptions<CatalogOptions>()
 
 // REVIEW: This is done for development ease but shouldn't be here in production
 builder.Services.AddMigration<CatalogContext, CatalogContextSeed>();
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.NumberHandling = JsonNumberHandling.Strict;
+});
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

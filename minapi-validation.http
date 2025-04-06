@@ -29,14 +29,16 @@ GET {{HostAddress}}/api/catalog/items/463
 
 ###
 
-PUT {{HostAddress}}/api/catalog/items/421
+# Invalid - name is missing
+
+POST {{HostAddress}}/api/catalog/items
 content-type: application/json
 
 {
   "id": 421,
   "price": 100,
   "description": "Description1",
-  "pictureFileName": "item1.png",
+  "pictureFileName": "item421.png",
   "catalogTypeId": 1,
   "catalogBrandId": 2
 }
