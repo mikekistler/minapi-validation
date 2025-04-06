@@ -1,6 +1,39 @@
-@minapi_validation_HostAddress = http://localhost:5277
+@HostAddress = http://localhost:5277
 
-GET {{minapi_validation_HostAddress}}/weatherforecast/
-Accept: application/json
+GET {{HostAddress}}/openapi/v1.json
 
 ###
+
+GET {{HostAddress}}/api/catalog/items
+
+###
+
+GET {{HostAddress}}/api/catalog/items/type/1/brand/2
+
+###
+
+# A request with an unknown API version returns a 400 ProblemDetails response
+
+GET {{HostAddress}}/api/catalog/items/463/pic?api-version=99
+
+###
+
+# A request with an unknown item id returns a 404 NotFound with empty response body
+
+GET {{HostAddress}}/api/catalog/items/463/pic
+
+###
+
+PUT {{HostAddress}}/api/catalog/items
+content-type: application/json
+
+{
+  "id": 999,
+  "name": "Item1",
+  "price": 100,
+  "description": "Description1",
+  "pictureFileName": "item1.png",
+  "catalogTypeId": 1,
+  "catalogBrandId": 2
+}
+
