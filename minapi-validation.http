@@ -4,23 +4,27 @@ GET {{HostAddress}}/openapi/v1.json
 
 ###
 
-GET {{HostAddress}}/api/catalog/items
+GET {{HostAddress}}/api/catalog/catalogtypes
+accept: application/json
 
 ###
 
-GET {{HostAddress}}/api/catalog/items/type/1/brand/2
+GET {{HostAddress}}/api/catalog/catalogbrands
+accept: application/json
 
 ###
 
-# A request with an unknown API version returns a 400 ProblemDetails response
+GET {{HostAddress}}/api/catalog/items/1
 
-GET {{HostAddress}}/api/catalog/items/463/pic?api-version=99
+###
+
+GET {{HostAddress}}/api/catalog/items?type=1&brand=2
 
 ###
 
 # A request with an unknown item id returns a 404 NotFound with empty response body
 
-GET {{HostAddress}}/api/catalog/items/463/pic
+GET {{HostAddress}}/api/catalog/items/463
 
 ###
 

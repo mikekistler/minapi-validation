@@ -9,6 +9,9 @@ builder.Services.AddDbContext<CatalogContext>(options =>
 builder.Services.AddOptions<CatalogOptions>()
     .BindConfiguration(nameof(CatalogOptions));
 
+// REVIEW: This is done for development ease but shouldn't be here in production
+builder.Services.AddMigration<CatalogContext, CatalogContextSeed>();
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
