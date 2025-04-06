@@ -4,21 +4,22 @@ GET {{HostAddress}}/openapi/v1.json
 
 ###
 
-GET {{HostAddress}}/api/catalog/catalogtypes
+GET {{HostAddress}}/api/catalog/types
 accept: application/json
 
 ###
 
-GET {{HostAddress}}/api/catalog/catalogbrands
+GET {{HostAddress}}/api/catalog/brands
 accept: application/json
 
 ###
 
-GET {{HostAddress}}/api/catalog/items/1
+GET {{HostAddress}}/api/catalog/items
+accept: application/json
 
 ###
 
-GET {{HostAddress}}/api/catalog/items?type=1&brand=2
+GET {{HostAddress}}/api/catalog/items?type=1&brand=1
 
 ###
 
@@ -28,12 +29,11 @@ GET {{HostAddress}}/api/catalog/items/463
 
 ###
 
-PUT {{HostAddress}}/api/catalog/items
+PUT {{HostAddress}}/api/catalog/items/421
 content-type: application/json
 
 {
-  "id": 999,
-  "name": "Item1",
+  "id": 421,
   "price": 100,
   "description": "Description1",
   "pictureFileName": "item1.png",

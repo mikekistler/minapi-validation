@@ -16,7 +16,7 @@ public static class CatalogApi
 
         // Routes for querying catalog items.
         api.MapGet("/items", GetAllItems)
-            .WithName("ListItems-V2")
+            .WithName("ListItems")
             .WithSummary("List catalog items")
             .WithDescription("Get a paginated list of items in the catalog.")
             .WithTags("Items");
@@ -40,20 +40,20 @@ public static class CatalogApi
 
                 // Routes for resolving catalog items using AI.
         api.MapGet("/items/withsemanticrelevance", GetItemsBySemanticRelevance)
-            .WithName("GetRelevantItems-V2")
+            .WithName("GetRelevantItems")
             .WithSummary("Search catalog for relevant items")
             .WithDescription("Search the catalog for items related to the specified text")
             .WithTags("Search");
 
         // Routes for resolving catalog items by type and brand.
-        api.MapGet("/catalogtypes",
+        api.MapGet("/types",
             [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
             async (CatalogContext context) => await context.CatalogTypes.OrderBy(x => x.Type).ToListAsync())
             .WithName("ListItemTypes")
             .WithSummary("List catalog item types")
             .WithDescription("Get a list of the types of catalog items")
             .WithTags("Types");
-        api.MapGet("/catalogbrands",
+        api.MapGet("/brands",
             [ProducesResponseType<ProblemDetails>(StatusCodes.Status400BadRequest, "application/problem+json")]
             async (CatalogContext context) => await context.CatalogBrands.OrderBy(x => x.Brand).ToListAsync())
             .WithName("ListItemBrands")
@@ -63,7 +63,7 @@ public static class CatalogApi
 
         // Routes for modifying catalog items.
         api.MapPut("/items/{id:int}", UpdateItem)
-            .WithName("UpdateItem-V2")
+            .WithName("UpdateItem")
             .WithSummary("Create or replace a catalog item")
             .WithDescription("Create or replace a catalog item")
             .WithTags("Items");
